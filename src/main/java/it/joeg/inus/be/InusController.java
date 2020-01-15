@@ -39,7 +39,7 @@ public class InusController {
     }
     
     @PostMapping(value = "/transit")
-    public ResponseEntity<TransitDTO> postTransit(TransitDTO transit){
+    public ResponseEntity<String> postTransit(String transit){
         LOG.info("Transit acquired {}", transit);
         return ResponseEntity.ok().body(transit);
     }
