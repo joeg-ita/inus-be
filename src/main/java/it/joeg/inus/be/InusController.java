@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,11 +36,11 @@ public class InusController {
         causes.add(new CauseDTO("1", "Lunch", ""));
         causes.add(new CauseDTO("2", "Permit", ""));
 
-        return ResponseEntity.ok().body(causes);
+        return ResponseEntity.ok().body(causes); 
     }
     
     @PostMapping(value = "/transit")
-    public ResponseEntity<String> postTransit(String transit){
+    public ResponseEntity<TransitDTO> postTransit(@RequestBody TransitDTO transit){
         LOG.info("Transit acquired {}", transit);
         return ResponseEntity.ok().body(transit);
     }
