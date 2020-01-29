@@ -1,4 +1,4 @@
-package it.joeg.inus.be;
+package it.joeg.inus.be.controllers.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

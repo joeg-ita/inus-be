@@ -1,4 +1,4 @@
-package it.joeg.inus.be;
+package it.joeg.inus.be.controllers.dto;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import lombok.Data;
  *
  */
 @Data
-public class TransitDTO {
+public class PunchDTO {
 
     String code;
     String cause;
