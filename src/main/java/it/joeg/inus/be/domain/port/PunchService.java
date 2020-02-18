@@ -11,6 +11,8 @@ public interface PunchService {
     
     public void save(Punch punch);
     
+    public void saveMany(List<Punch> punches);
+    
     public List<Punch> retrievePunches(String badgeId);
     
     public Optional<Punch> retrieveLastPunch(String badgeId);

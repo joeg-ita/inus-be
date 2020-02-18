@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import it.joeg.inus.be.domain.port.OTPProvider;
 import it.joeg.inus.be.domain.port.PunchService;
 import it.joeg.inus.be.domain.port.RegistrationService;
+import it.joeg.inus.be.domain.usecases.InsertPunchUsecase;
 import it.joeg.inus.be.domain.usecases.RegistrationUsecase;
 import it.joeg.inus.be.domain.usecases.RetrieveCausesUsecase;
 import it.joeg.inus.be.domain.usecases.RetrievePunchesUsecase;
@@ -78,5 +79,10 @@ public class BeansConfiguration {
     @Bean
     public RetrieveCausesUsecase causesUsecase(){
         return new RetrieveCausesUsecase(causesService());
+    }
+    
+    @Bean
+    public InsertPunchUsecase insertPunchUsecase(){
+        return new InsertPunchUsecase(punchService(), registrationService());
     }
 }

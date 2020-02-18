@@ -48,4 +48,15 @@ public class RegistrationServiceImplMock implements RegistrationService {
         return result;
     }
 
+    @Override
+    public Optional<Registration> findRegistrationByApplicationId(String appId) {
+        Optional<Registration> result = Optional.empty();
+        for (Map.Entry<String, Registration> regs : inMemoryStore.getRegistration().entrySet()) {
+            if (regs.getValue().getApplicationId() != null && regs.getValue().getApplicationId().equals(appId)) {
+                result = Optional.ofNullable(regs.getValue());
+            }
+        }
+        return result;
+    }
+
 }

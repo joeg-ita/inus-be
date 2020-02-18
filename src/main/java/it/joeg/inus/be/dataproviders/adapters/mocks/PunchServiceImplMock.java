@@ -24,6 +24,17 @@ public class PunchServiceImplMock implements PunchService {
     }
 
     @Override
+    public void saveMany(List<Punch> punches) {
+        for (Punch p : punches) {
+            if (p.getId() == null) {
+                p.setId(ObjectId.get().toString());
+            }
+            inMemoryStore.getPunches().put(p.getBadgeId(), p);
+        }
+
+    }
+
+    @Override
     public List<Punch> retrievePunches(String badgeId) {
         List<Punch> result = new ArrayList<>();
         for (Map.Entry<String, Punch> p : inMemoryStore.getPunches().entrySet()) {

@@ -16,14 +16,19 @@ import org.springframework.data.mongodb.core.query.Query;
 /**
  * Implementazione servizio timbratura
  */
-public class PunchServiceImpl implements PunchService{
-    
+public class PunchServiceImpl implements PunchService {
+
     @Autowired
     MongoTemplate mongoTemplate;
 
     @Override
     public void save(Punch punch) {
         mongoTemplate.save(punch);
+    }
+
+    @Override
+    public void saveMany(List<Punch> punches) {
+        mongoTemplate.insertAll(punches);
     }
 
     @Override
@@ -37,10 +42,11 @@ public class PunchServiceImpl implements PunchService{
         List<Order> sortproperties = new ArrayList<>();
         sortproperties.add(new Order(Sort.Direction.DESC, "_id"));
         List<Punch> tmpList = mongoTemplate.find(new Query().limit(1).with(Sort.by(sortproperties)), Punch.class);
-        if(!tmpList.isEmpty()){
+        if (!tmpList.isEmpty()) {
             return Optional.ofNullable(tmpList.get(0));
         } else {
             return Optional.empty();
         }
     }
+
 }

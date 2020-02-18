@@ -42,4 +42,10 @@ public class RegistrationServiceImpl implements RegistrationService {
         return Optional.ofNullable(registration);
     }
 
+    @Override
+    public Optional<Registration> findRegistrationByApplicationId(String appId) {
+        Registration registration = mongoTemplate.findOne(new Query(where("applicationId").is(appId)), Registration.class);
+        return Optional.ofNullable(registration);
+    }
+
 }

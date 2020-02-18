@@ -16,5 +16,7 @@ public interface RegistrationService {
     
     public Optional<Registration> findDeviceId(String deviceId);
     
+    public Optional<Registration> findRegistrationByApplicationId(String appId);
+    
     
 }

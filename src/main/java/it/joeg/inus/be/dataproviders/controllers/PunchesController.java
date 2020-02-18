@@ -2,6 +2,8 @@ package it.joeg.inus.be.dataproviders.controllers;
 
 import it.joeg.inus.be.dataproviders.controllers.models.PunchDTO;
 import it.joeg.inus.be.domain.entities.Punch;
+import it.joeg.inus.be.domain.exceptions.InvalidApplicationIdException;
+import it.joeg.inus.be.domain.usecases.InsertPunchUsecase;
 import it.joeg.inus.be.domain.usecases.RetrievePunchesUsecase;
 import java.util.List;
 import java.util.Optional;
@@ -26,20 +28,33 @@ import org.springframework.web.bind.annotation.RestController;
 public class PunchesController {
 
     private static final Logger LOG = LoggerFactory.getLogger(PunchesController.class);
-    
+
     @Autowired
     RetrievePunchesUsecase punchesUsecase;
 
+    @Autowired
+    InsertPunchUsecase insertPunchUsecase;
+
     @PostMapping(value = "/punch")
-    public ResponseEntity<PunchDTO> postPunch(@RequestBody PunchDTO punch) {
+    public ResponseEntity<?> postPunch(@RequestBody Punch punch) {
         LOG.info("Punch acquired {}", punch);
-        return ResponseEntity.ok().body(punch);
+        try {
+            insertPunchUsecase.insertOnePunch(punch);
+            return ResponseEntity.ok().build();
+        } catch (InvalidApplicationIdException ex) {
+            return ResponseEntity.badRequest().body(ex.getLocalizedMessage());
+        }
     }
 
     @PostMapping(value = "/punches")
-    public ResponseEntity<List<PunchDTO>> postPunch(@RequestBody List<PunchDTO> punches) {
+    public ResponseEntity<List<Punch>> postPunch(@RequestBody List<Punch> punches) {
         LOG.info("Punchs acquired {}", punches);
-        return ResponseEntity.ok().body(punches);
+        try {
+            insertPunchUsecase.insertPunches(punches);
+            return ResponseEntity.ok().body(punches);
+        } catch (InvalidApplicationIdException ex) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @GetMapping(value = "/punches/{badgeId}")
@@ -48,15 +63,15 @@ public class PunchesController {
         List<Punch> punches = punchesUsecase.retrievePunches(badgeId);
         return ResponseEntity.ok().body(punches);
     }
-    
+
     @GetMapping(value = "/last_punch/{badgeId}")
     public ResponseEntity<?> getLastPunch(@PathVariable("badgeId") String badgeId) {
         LOG.info("Requested Punches by user {}", badgeId);
         Optional<Punch> punch = punchesUsecase.retrieveLastPunch(badgeId);
-        if(punch.isPresent()){
+        if (punch.isPresent()) {
             return ResponseEntity.ok().body(punch.get());
         } else {
             return ResponseEntity.noContent().build();
-        }   
+        }
     }
 }
