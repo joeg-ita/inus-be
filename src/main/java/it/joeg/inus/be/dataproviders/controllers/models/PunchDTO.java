@@ -1,11 +1,13 @@
-package it.joeg.inus.be.controllers.dto;
+package it.joeg.inus.be.dataproviders.controllers.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 /**
  *
  */
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PunchDTO {
 
     String code;

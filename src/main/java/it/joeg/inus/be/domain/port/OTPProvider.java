@@ -3,7 +3,7 @@ package it.joeg.inus.be.domain.port;
 /**
  * OTP Generator 
  */
-public interface OTPService {
+public interface OTPProvider {
     
     public String generate(int len);
     

@@ -3,7 +3,7 @@ package it.joeg.inus.be.domain.entities;
 /**
  *
  */
-enum CausesType {
+public enum CausesType {
 
     IN,
     OUT,

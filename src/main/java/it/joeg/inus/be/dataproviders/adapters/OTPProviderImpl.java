@@ -1,12 +1,12 @@
-package it.joeg.inus.be.dataproviders;
+package it.joeg.inus.be.dataproviders.adapters;
 
-import it.joeg.inus.be.domain.port.OTPService;
 import java.util.Random;
+import it.joeg.inus.be.domain.port.OTPProvider;
 
 /**
  * Concrete implementation of OTP Generator
  */
-public class OTPServiceImpl implements OTPService {
+public class OTPProviderImpl implements OTPProvider {
 
     final String NUMBERS = "0123456789";
 
