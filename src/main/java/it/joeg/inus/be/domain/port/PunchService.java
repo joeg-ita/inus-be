@@ -16,4 +16,6 @@ public interface PunchService {
     public List<Punch> retrievePunches(String badgeId);
     
     public Optional<Punch> retrieveLastPunch(String badgeId);
+    
+    public long retrievePunches(long minutes);
 }

@@ -49,4 +49,9 @@ public class PunchServiceImpl implements PunchService {
         }
     }
 
+    @Override
+    public long retrievePunches(long minutes) {
+        return mongoTemplate.find(new Query(where("timestamp").gte(LocalDateTime.now().minusMinutes(minutes))), Punch.class).size();
+    }
+
 }
