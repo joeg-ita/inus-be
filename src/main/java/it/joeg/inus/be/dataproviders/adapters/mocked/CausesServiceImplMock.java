@@ -1,5 +1,6 @@
-package it.joeg.inus.be.dataproviders.adapters.mocks;
+package it.joeg.inus.be.dataproviders.adapters.mocked;
 
+import it.joeg.inus.be.dataproviders.mocked.InMemoryStore;
 import it.joeg.inus.be.domain.entities.Causes;
 import it.joeg.inus.be.domain.port.CausesService;
 import java.util.ArrayList;

@@ -1,11 +1,14 @@
-package it.joeg.inus.be.dataproviders.adapters.mocks;
+package it.joeg.inus.be.dataproviders.mocked;
 
 import it.joeg.inus.be.domain.entities.Causes;
 import it.joeg.inus.be.domain.entities.CausesType;
 import it.joeg.inus.be.domain.entities.Punch;
 import it.joeg.inus.be.domain.entities.Registration;
+import it.joeg.inus.be.domain.entities.user.User;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import org.bson.types.ObjectId;
 
 /**
@@ -21,6 +24,7 @@ public class InMemoryStore {
         if(instance == null){
             instance = new InMemoryStore();
             populateCauses();
+            populateUsers();
         }
         return instance;
     }
@@ -30,6 +34,8 @@ public class InMemoryStore {
     private final static Map<String, Punch> PUNCHES = new HashMap<>();
     
     private final static Map<String, Causes> CAUSES = new HashMap<>();
+    
+    private final static Map<String, User> USERS = new HashMap<>();
 
     public Map<String, Registration> getRegistration() {
         return REGISTRATION;
@@ -42,6 +48,26 @@ public class InMemoryStore {
     public Map<String, Causes> getCauses() {
         return CAUSES;
     }
+
+    public Map<String, User> getUsers() {
+        return USERS;
+    } 
+    
+    private static void populateUsers() {
+        User uAdmin = new User();
+        uAdmin.setId("admin");
+        Set<String> roles = new HashSet<>();
+        roles.add("ADMIN");
+        uAdmin.setRoles(roles);
+        USERS.put(uAdmin.getId(), uAdmin);
+        
+        User uRegister = new User();
+        uRegister.setId("registrator");
+        Set<String> uRegisterRoles = new HashSet<>();
+        uRegisterRoles.add("REGISTER");
+        uRegister.setRoles(uRegisterRoles);
+        USERS.put(uRegister.getId(), uRegister);
+    }
     
     private static void populateCauses() {
         Causes c1 = new Causes();
@@ -53,8 +79,8 @@ public class InMemoryStore {
         c1.setRegulation("");
         c1.setType(CausesType.ALL);
         c1.setEnabled(true);
-        
         CAUSES.put(c1.getId(), c1);
+        
         Causes c2 = new Causes();
         c2.setId(ObjectId.get().toString());
         c2.setVenueId("*");

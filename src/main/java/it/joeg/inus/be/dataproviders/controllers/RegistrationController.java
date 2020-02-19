@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Endpoint di registrazione di app-device
  */
 @RestController
-@RequestMapping("/v1/")
+@RequestMapping("/api/v1")
 @CrossOrigin("*")
 public class RegistrationController {
 

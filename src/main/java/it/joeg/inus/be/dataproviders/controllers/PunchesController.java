@@ -1,6 +1,5 @@
 package it.joeg.inus.be.dataproviders.controllers;
 
-import it.joeg.inus.be.dataproviders.controllers.models.PunchDTO;
 import it.joeg.inus.be.domain.entities.Punch;
 import it.joeg.inus.be.domain.exceptions.InvalidApplicationIdException;
 import it.joeg.inus.be.domain.usecases.InsertPunchUsecase;
@@ -23,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  * punches endpoint controller
  */
 @RestController
-@RequestMapping("/v1/")
+@RequestMapping("/api/v1")
 @CrossOrigin("*")
 public class PunchesController {
 
@@ -35,7 +34,7 @@ public class PunchesController {
     @Autowired
     InsertPunchUsecase insertPunchUsecase;
 
-    @PostMapping(value = "/punch")
+    @PostMapping(value = "/punches/punch")
     public ResponseEntity<?> postPunch(@RequestBody Punch punch) {
         LOG.info("Punch acquired {}", punch);
         try {
@@ -46,7 +45,7 @@ public class PunchesController {
         }
     }
 
-    @PostMapping(value = "/punches")
+    @PostMapping(value = "/punches/punches")
     public ResponseEntity<List<Punch>> postPunch(@RequestBody List<Punch> punches) {
         LOG.info("Punchs acquired {}", punches);
         try {
@@ -64,7 +63,7 @@ public class PunchesController {
         return ResponseEntity.ok().body(punches);
     }
 
-    @GetMapping(value = "/last_punch/{badgeId}")
+    @GetMapping(value = "/punches/last_punch/{badgeId}")
     public ResponseEntity<?> getLastPunch(@PathVariable("badgeId") String badgeId) {
         LOG.info("Requested Punches by user {}", badgeId);
         Optional<Punch> punch = punchesUsecase.retrieveLastPunch(badgeId);

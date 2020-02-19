@@ -1,5 +1,6 @@
-package it.joeg.inus.be.dataproviders.adapters.mocks;
+package it.joeg.inus.be.dataproviders.adapters.mocked;
 
+import it.joeg.inus.be.dataproviders.mocked.InMemoryStore;
 import it.joeg.inus.be.domain.entities.Registration;
 import it.joeg.inus.be.domain.port.RegistrationService;
 import java.util.Map;

@@ -1,6 +1,5 @@
 package it.joeg.inus.be.dataproviders.controllers;
 
-import it.joeg.inus.be.dataproviders.controllers.models.CauseDTO;
 import it.joeg.inus.be.domain.entities.Causes;
 import it.joeg.inus.be.domain.usecases.RetrieveCausesUsecase;
 import java.util.List;
@@ -19,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 @RestController
-@RequestMapping("/v1/")
+@RequestMapping("/api/v1")
 @CrossOrigin("*")
 public class CausesController {
     
