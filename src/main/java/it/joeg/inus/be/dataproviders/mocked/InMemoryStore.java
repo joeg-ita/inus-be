@@ -57,14 +57,14 @@ public class InMemoryStore {
         User uAdmin = new User();
         uAdmin.setId("admin");
         Set<String> roles = new HashSet<>();
-        roles.add("ADMIN");
+        roles.add("ROLE_ADMIN");
         uAdmin.setRoles(roles);
         USERS.put(uAdmin.getId(), uAdmin);
         
         User uRegister = new User();
-        uRegister.setId("registrator");
+        uRegister.setId("editor");
         Set<String> uRegisterRoles = new HashSet<>();
-        uRegisterRoles.add("REGISTER");
+        uRegisterRoles.add("ROLE_EDITOR");
         uRegister.setRoles(uRegisterRoles);
         USERS.put(uRegister.getId(), uRegister);
     }

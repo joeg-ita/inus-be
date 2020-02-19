@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoClientDbFactory;
 
 /**
- *
+ * Congifurazione Beans MongoTemplate
  */
 @Configuration
 public class MongoDBConfig {

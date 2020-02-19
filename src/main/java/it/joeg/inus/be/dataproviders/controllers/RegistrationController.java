@@ -12,8 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/v1")
-@CrossOrigin("*")
 public class RegistrationController {
 
     private static final Logger LOG = LoggerFactory.getLogger(RegistrationController.class);
@@ -35,6 +34,7 @@ public class RegistrationController {
     @Autowired
     private RegistrationUsecase registrationUsecase;
 
+    @PreAuthorize("hasRole('EDITOR')")
     @PostMapping(value = "/otp")
     public ResponseEntity<?> requireOTP(@RequestBody Registration registration) {
         LOG.info("Require Registration {}", registration);
