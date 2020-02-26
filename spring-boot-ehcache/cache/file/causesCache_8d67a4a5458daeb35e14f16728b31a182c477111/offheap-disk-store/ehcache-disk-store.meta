@@ -1,0 +1,4 @@
+#Key and value types
+#Mon Feb 24 14:52:35 CET 2020
+keyType=java.lang.String
+valueType=it.joeg.inus.be.domain.entities.Causes
